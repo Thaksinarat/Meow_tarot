@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Meow Tarot • ทาสแมวพยากรณ์ | ดูดวงไพ่ทาโรต์น้องแมว 3D Dark Claymorphism</title>
+
+  <!-- Google Fonts: Fredoka & Mitr -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Mitr:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Google Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Configuration for New Dark Mystical Palette -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            night: {
+              bg: '#0A0E3B',
+              bgLight: '#121752',
+              card: '#2E1A47',
+              cardBorder: '#472B6B',
+              orchid: '#B862A2',
+              orchidDark: '#974582',
+              peach: '#FAD1A7',
+              peachDark: '#E5AF7D',
+              textLight: '#F3E8FF',
+              textMuted: '#B3A1C9'
+            }
+          },
+          fontFamily: {
+            sans: ['Mitr', 'sans-serif'],
+            display: ['Fredoka', 'Mitr', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Dark Mystical Claymorphism Styles */
+    body {
+      background-color: #0A0E3B;
+      background-image: 
+        radial-gradient(rgba(184, 98, 162, 0.25) 1.5px, transparent 1.5px),
+        radial-gradient(rgba(250, 209, 167, 0.2) 1.5px, #0A0E3B 1.5px);
+      background-size: 36px 36px;
+      background-position: 0 0, 18px 18px;
+      color: #F3E8FF;
+      font-family: 'Mitr', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Clay Cards for Dark Mode */
+    .clay-card {
+      background: linear-gradient(145deg, #2E1A47, #1F1033);
+      box-shadow: 12px 14px 28px rgba(0, 0, 0, 0.5), -6px -6px 18px rgba(71, 43, 107, 0.35), inset 2px 2px 4px rgba(250, 209, 167, 0.15), inset -3px -3px 6px rgba(0, 0, 0, 0.6);
+      border-radius: 28px;
+      border: 2px solid rgba(184, 98, 162, 0.25);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Clay Buttons */
+    .clay-btn-orchid {
+      position: relative;
+      background: linear-gradient(135deg, #C263A5, #974582);
+      box-shadow: 0 7px 0 #672257, 0 12px 20px rgba(184, 98, 162, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+      border-radius: 22px;
+      transition: all 0.15s ease-in-out;
+      user-select: none;
+    }
+    .clay-btn-orchid:active {
+      transform: translateY(5px);
+      box-shadow: 0 2px 0 #672257, 0 4px 10px rgba(184, 98, 162, 0.2);
+    }
+
+    .clay-btn-peach {
+      position: relative;
+      background: linear-gradient(135deg, #FAD1A7, #E5AF7D);
+      box-shadow: 0 7px 0 #B27B49, 0 12px 20px rgba(250, 209, 167, 0.25), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+      color: #2E1A47;
+      border-radius: 22px;
+      transition: all 0.15s ease-in-out;
+      user-select: none;
+    }
+    .clay-btn-peach:active {
+      transform: translateY(5px);
+      box-shadow: 0 2px 0 #B27B49, 0 4px 10px rgba(250, 209, 167, 0.2);
+    }
+
+    .clay-input {
+      background: #190E2B;
+      box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.6), inset -4px -4px 8px rgba(71, 43, 107, 0.3);
+      border: 1.5px solid #472B6B;
+      border-radius: 20px;
+      color: #FAD1A7;
+    }
+    .clay-input:focus {
+      outline: none;
+      border-color: #B862A2;
+      background: #23133D;
+    }
+
+    /* 3D Flip Card Effect */
+    .perspective-1000 {
+      perspective: 1200px;
+    }
+    .transform-style-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+
+    /* Mascot Animations */
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1.5deg); }
+    }
+    .animate-float {
+      animation: floaty 4.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { filter: drop-shadow(0 0 12px rgba(184, 98, 162, 0.5)); }
+      50% { filter: drop-shadow(0 0 28px rgba(250, 209, 167, 0.8)); }
+    }
+    .glow-magic {
+      animation: pulse-glow 3s infinite;
+    }
+
+    .card-shimmer {
+      background: linear-gradient(110deg, transparent 20%, rgba(250, 209, 167, 0.25) 40%, transparent 60%);
+      background-size: 200% 100%;
+      animation: shimmer 3s infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* Circular Fan Deck Styles */
+    .fan-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      z-index: 20;
+    }
+    .fan-card {
+      position: absolute;
+      width: 36px;
+      height: 60px;
+      left: -18px; /* กึ่งกลางแกน X (-width/2) */
+      top: -30px;  /* กึ่งกลางแกน Y (-height/2) */
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+      cursor: pointer;
+      border-radius: 4px;
+      z-index: 1;
+    }
+    @media (min-width: 640px) {
+      .fan-card {
+        width: 44px;
+        height: 70px;
+        left: -22px;
+        top: -35px;
+        border-radius: 6px;
+      }
+    }
+    .fan-card-selected {
+      border-color: #FAD1A7 !important;
+      box-shadow: 0 0 16px rgba(250, 209, 167, 0.9), inset 0 0 8px rgba(184, 98, 162, 0.6) !important;
+      z-index: 100 !important;
+    }
+    .fan-card-disabled {
+      opacity: 0.2;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-night-orchid selection:text-white">
+
+  <!-- Header Navigation Bar -->
+  <header class="sticky top-0 z-40 px-4 py-3 bg-night-bg/80 backdrop-blur-md border-b border-night-cardBorder/60 transition-all">
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-night-orchid to-night-peach flex items-center justify-center text-night-card shadow-md shadow-night-orchid/20">
+          <span class="material-symbols-outlined text-2xl font-bold">pets</span>
+        </div>
+        <div>
+          <span class="font-display font-bold text-lg text-night-peach tracking-wide block leading-none">MEOW TAROT</span>
+          <span class="text-[11px] text-night-orchid font-medium tracking-tight">ทาสแมวพยากรณ์ ✨</span>
+        </div>
+      </div>
+
+      <!-- Header Actions & User Auth Control -->
+      <div class="flex items-center gap-2.5">
+        
+        <!-- Audio Switcher -->
+        <button id="soundToggleBtn" onclick="toggleAudio()" class="w-10 h-10 rounded-2xl bg-night-card border border-night-cardBorder flex items-center justify-center text-night-peach shadow-sm active:scale-95 transition" title="เปิด/ปิดเสียง">
+          <span class="material-symbols-outlined text-xl" id="soundIcon">volume_up</span>
+        </button>
+
+        <!-- User Profile / Login Widget -->
+        <div id="userAuthContainer">
+          <!-- Anonymous or Guest State -->
+          <button id="headerLoginBtn" onclick="openLoginModal()" class="px-3.5 py-2 rounded-2xl bg-night-orchid text-white text-xs font-semibold flex items-center gap-1.5 shadow-md active:scale-95 transition">
+            <span class="material-symbols-outlined text-sm">login</span>
+            <span>เข้าสู่ระบบ</span>
+          </button>
+
+          <!-- Logged-in State (Hidden by default) -->
+          <div id="headerProfileWidget" class="hidden flex items-center gap-2 pl-2 pr-1.5 py-1 rounded-2xl bg-night-card border border-night-cardBorder">
+            <span id="userAvatar" class="w-7 h-7 rounded-full bg-night-orchid text-white flex items-center justify-center text-xs font-bold border border-night-peach">?</span>
+            <span id="userName" class="text-xs font-medium text-night-peach max-w-[90px] truncate">ผู้ใช้เหมียว</span>
+            <button onclick="handleLogout()" class="w-6 h-6 rounded-full bg-red-900/40 text-red-300 flex items-center justify-center hover:bg-red-800/60 transition" title="ออกจากระบบ">
+              <span class="material-symbols-outlined text-xs">logout</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-grow max-w-4xl mx-auto w-full px-4 pt-4 pb-16 space-y-10">
+
+    <!-- HERO SECTION -->
+    <section class="text-center pt-4 pb-2 relative">
+      <!-- Status Badge -->
+      <div class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-night-card/80 border border-night-cardBorder text-night-peach text-xs font-semibold mb-4 shadow-inner">
+        <span class="material-symbols-outlined text-sm text-night-orchid">auto_awesome</span>
+        <span>โชคชะตาแห่งราตรีโดยพลังเหมียว 100%</span>
+      </div>
+
+      <!-- Mascot Graphics -->
+      <div class="relative w-44 h-44 mx-auto mb-3 animate-float">
+        <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-2xl">
+          <defs>
+            <radialGradient id="catBodyGrad" cx="35%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#FAD1A7" />
+              <stop offset="60%" stop-color="#E5AF7D" />
+              <stop offset="100%" stop-color="#B27B49" />
+            </radialGradient>
+            <radialGradient id="hatGrad" cx="40%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#C263A5" />
+              <stop offset="70%" stop-color="#7C3AED" />
+              <stop offset="100%" stop-color="#2E1A47" />
+            </radialGradient>
+            <radialGradient id="crystalGrad" cx="30%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#FAD1A7" />
+              <stop offset="50%" stop-color="#B862A2" />
+              <stop offset="100%" stop-color="#3B1C5A" />
+            </radialGradient>
+          </defs>
+          
+          <!-- Cat Ears -->
+          <polygon points="50,65 30,15 80,45" fill="#E5AF7D" />
+          <polygon points="52,60 38,28 75,46" fill="#C263A5" />
+          <polygon points="150,65 170,15 120,45" fill="#E5AF7D" />
+          <polygon points="148,60 162,28 125,46" fill="#C263A5" />
+
+          <!-- Wizard Hat -->
+          <path d="M50,48 Q100,-5 145,45 Q100,30 50,48 Z" fill="url(#hatGrad)" />
+          <circle cx="100" cy="5" r="7" fill="#FAD1A7" />
+          <path d="M40,50 Q100,65 160,50 Q100,40 40,50 Z" fill="#2E1A47" />
+
+          <!-- Cat Face Head -->
+          <ellipse cx="100" cy="95" rx="55" ry="48" fill="url(#catBodyGrad)" />
+          
+          <!-- Cheeks -->
+          <ellipse cx="70" cy="110" rx="9" ry="6" fill="#C263A5" opacity="0.6" />
+          <ellipse cx="130" cy="110" rx="9" ry="6" fill="#C263A5" opacity="0.6" />
+
+          <!-- Closed Meditation Eyes -->
+          <path d="M68,93 Q78,103 88,93" stroke="#2E1A47" stroke-width="4" stroke-linecap="round" fill="none" />
+          <path d="M112,93 Q122,103 132,93" stroke="#2E1A47" stroke-width="4" stroke-linecap="round" fill="none" />
+
+          <!-- Nose and Whiskers -->
+          <polygon points="96,105 104,105 100,110" fill="#974582" />
+          <line x1="50" y1="102" x2="25" y2="98" stroke="#2E1A47" stroke-width="2" />
+          <line x1="150" y1="102" x2="175" y2="98" stroke="#2E1A47" stroke-width="2" />
+
+          <!-- Cape & Crystal Ball -->
+          <path d="M65,135 Q100,148 135,135 Q150,175 100,180 Q50,175 65,135 Z" fill="#2E1A47" />
+          <ellipse cx="100" cy="165" rx="28" ry="28" fill="url(#crystalGrad)" class="glow-magic" />
+          <circle cx="70" cy="165" rx="10" ry="8" fill="#FAD1A7" />
+          <circle cx="130" cy="165" rx="10" ry="8" fill="#FAD1A7" />
+        </svg>
+      </div>
+
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl text-night-peach tracking-tight mb-2">
+        ทาสแมวพยากรณ์ <span class="text-night-orchid block text-2xl sm:text-3xl font-semibold mt-1">Meow Tarot Night Deck</span>
+      </h1>
+      
+      <p class="text-xs sm:text-sm text-night-textMuted max-w-md mx-auto leading-relaxed mb-6">
+        ค้นหาคำตอบแห่งชีวิตใต้ท้องฟ้าแห่งจักรวาลแมว สมาชิกที่เข้าสู่ระบบดูดวงได้ไม่จำกัดจำนวนครั้ง
+      </p>
+
+      <!-- Action Area -->
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="#topics-section" class="clay-btn-orchid px-6 py-3.5 text-white font-medium text-sm flex items-center gap-2 active:scale-95">
+          <span class="material-symbols-outlined text-lg">magic_button</span>
+          <span>เริ่มทำนาย</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION: TOPIC SELECTION -->
+    <section id="topics-section" class="scroll-mt-20">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="font-display font-bold text-lg sm:text-xl text-night-peach flex items-center gap-2">
+            <span class="material-symbols-outlined text-night-orchid">category</span>
+            เลือกเรื่องที่หัวใจคุณค้นหา
+          </h2>
+          <p class="text-xs text-night-textMuted">หัวข้อสำหรับดวงชะตาประจำในเรื่องต่างๆ ดังนี้</p>
+        </div>
+      </div>
+
+      <!-- Clay Selection Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5" id="topicGrid">
+        <!-- 1. Daily -->
+        <button onclick="selectTopic('daily', 'ดูดวงประจำวัน', 'ดวงชะตารายวัน 1 ใบ วันนี้ชีวิตจะปังหรือพัง')" class="topic-btn clay-card p-4 text-left flex flex-col justify-between h-36 relative overflow-hidden group hover:border-night-orchid border-night-orchid bg-night-card">
+          <div class="w-9 h-9 rounded-2xl bg-night-orchid/20 text-night-peach flex items-center justify-center font-bold">
+            <span class="material-symbols-outlined text-xl">wb_sunny</span>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-sm text-night-peach group-hover:text-night-orchid transition">ดูดวงประจำวัน</h3>
+            <span class="text-[11px] text-night-textMuted block">Daily Meow</span>
+          </div>
+          <div class="active-badge absolute top-2 right-2 w-3 h-3 rounded-full bg-night-orchid ring-4 ring-night-card"></div>
+        </button>
+
+        <!-- 2. Love -->
+        <button onclick="selectTopic('love', 'ดูดวงความรัก', 'ความรัก ความสัมพันธ์ หัวใจจะนุ่มฟูหรือต้องพักผ่อน')" class="topic-btn clay-card p-4 text-left flex flex-col justify-between h-36 relative overflow-hidden group hover:border-night-orchid">
+          <div class="w-9 h-9 rounded-2xl bg-rose-900/30 text-rose-300 flex items-center justify-center font-bold">
+            <span class="material-symbols-outlined text-xl">favorite</span>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-sm text-night-peach group-hover:text-rose-300 transition">ดูดวงความรัก</h3>
+            <span class="text-[11px] text-night-textMuted block">Love & Purr</span>
+          </div>
+          <div class="active-badge hidden absolute top-2 right-2 w-3 h-3 rounded-full bg-rose-400 ring-4 ring-night-card"></div>
+        </button>
+
+        <!-- 3. Work -->
+        <button onclick="selectTopic('work', 'ดูดวงการงาน', 'ทิศทางการทำงาน ภาระหน้าที่ และความสำเร็จ')" class="topic-btn clay-card p-4 text-left flex flex-col justify-between h-36 relative overflow-hidden group hover:border-night-orchid">
+          <div class="w-9 h-9 rounded-2xl bg-blue-900/30 text-blue-300 flex items-center justify-center font-bold">
+            <span class="material-symbols-outlined text-xl">work</span>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-sm text-night-peach group-hover:text-blue-300 transition">ดูดวงการงาน</h3>
+            <span class="text-[11px] text-night-textMuted block">Work & Paws</span>
+          </div>
+          <div class="active-badge hidden absolute top-2 right-2 w-3 h-3 rounded-full bg-blue-400 ring-4 ring-night-card"></div>
+        </button>
+
+        <!-- 4. Wealth -->
+        <button onclick="selectTopic('wealth', 'ดูดวงการเงิน', 'โชคลาภ การเงิน หรือเสียเงินกับขนมแมวเลีย')" class="topic-btn clay-card p-4 text-left flex flex-col justify-between h-36 relative overflow-hidden group hover:border-night-orchid">
+          <div class="w-9 h-9 rounded-2xl bg-emerald-900/30 text-emerald-300 flex items-center justify-center font-bold">
+            <span class="material-symbols-outlined text-xl">savings</span>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-sm text-night-peach group-hover:text-emerald-300 transition">ดูดวงการเงิน</h3>
+            <span class="text-[11px] text-night-textMuted block">Wealth & Fish</span>
+          </div>
+          <div class="active-badge hidden absolute top-2 right-2 w-3 h-3 rounded-full bg-emerald-400 ring-4 ring-night-card"></div>
+        </button>
+
+        <!-- 5. Monthly -->
+        <button onclick="selectTopic('monthly', 'ดูดวงรายเดือน', 'ภาพรวมชีวิตตลอดทั้งเดือน สิ่งที่ต้องรับมือ')" class="topic-btn clay-card p-4 text-left flex flex-col justify-between h-36 relative overflow-hidden group hover:border-night-orchid">
+          <div class="w-9 h-9 rounded-2xl bg-purple-900/30 text-purple-300 flex items-center justify-center font-bold">
+            <span class="material-symbols-outlined text-xl">calendar_month</span>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-sm text-night-peach group-hover:text-purple-300 transition">ดูดวงรายเดือน</h3>
+            <span class="text-[11px] text-night-textMuted block">Monthly Destiny</span>
+          </div>
+          <div class="active-badge hidden absolute top-2 right-2 w-3 h-3 rounded-full bg-purple-400 ring-4 ring-night-card"></div>
+        </button>
+
+        <!-- 6. Custom -->
+        <button onclick="selectTopic('custom', 'หัวข้อตามใจคุณ', 'อธิษฐานคำถามที่อยากรู้ในใจ แล้วพิมพ์ถามท่านเหมียว')" class="topic-btn clay-card p-4 text-left flex flex-col justify-between h-36 relative overflow-hidden group hover:border-night-orchid">
+          <div class="w-9 h-9 rounded-2xl bg-pink-900/30 text-pink-300 flex items-center justify-center font-bold">
+            <span class="material-symbols-outlined text-xl">edit_note</span>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-sm text-night-peach group-hover:text-pink-300 transition">หัวข้อกำหนดเอง</h3>
+            <span class="text-[11px] text-night-textMuted block">Custom Question</span>
+          </div>
+          <div class="active-badge hidden absolute top-2 right-2 w-3 h-3 rounded-full bg-pink-400 ring-4 ring-night-card"></div>
+        </button>
+      </div>
+
+      <!-- Custom Question Field -->
+      <div id="customQuestionArea" class="hidden mt-4 p-4 clay-card">
+        <label for="customQuestionInput" class="block text-xs font-semibold text-night-peach mb-1.5 flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm text-night-orchid">psychology_alt</span>
+          พิมพ์สิ่งที่อยากถามท่านเหมียวพยากรณ์:
+        </label>
+        <input type="text" id="customQuestionInput" placeholder="เช่น 'จะสอบผ่านวิชาคณิตไหม?', 'เขาคิดยังไงกับเรา?'..." class="clay-input w-full px-4 py-2.5 text-sm">
+      </div>
+    </section>
+
+    <!-- SECTION: TAROT DECK & DRAW FLOW -->
+    <section id="card-deck-section" class="scroll-mt-20">
+      <div class="clay-card p-6 text-center relative overflow-hidden">
+        
+        <div class="relative z-10 max-w-lg mx-auto">
+          <!-- Topic Badge -->
+          <div class="inline-block px-3.5 py-1 rounded-full bg-night-bg/80 border border-night-cardBorder text-night-peach text-xs font-semibold mb-2" id="currentTopicBadge">
+            หัวข้อปัจจุบัน: ดูดวงประจำวัน (เลือก 1 ใบ)
+          </div>
+
+          <h2 class="font-display font-bold text-xl sm:text-2xl text-night-peach mb-1" id="deckInstructionTitle">
+            ตั้งจิตอธิษฐาน แล้วเลือกไพ่ทีละใบ
+          </h2>
+          <p class="text-xs text-night-textMuted mb-6" id="deckInstructionSub font-semibold">
+            เข้าสู่ระบบแล้วดูดวงได้ไม่จำกัดจำนวนครั้ง
+          </p>
+
+          <!-- Selected Cards Tray Indicator -->
+          <div id="selectedTray" class="flex justify-center items-center gap-3 mb-4 min-h-[50px]">
+            <!-- Slots Generated Dynamically -->
+          </div>
+
+          <!-- Standard Deck Active State -->
+          <div id="deckActiveContainer">
+            <!-- ปรับขนาดความสูงให้พอดีกับวงกลมไพ่ -->
+            <div class="relative h-[340px] sm:h-[460px] w-full flex items-center justify-center my-2" id="cardsDisplayContainer">
+              
+              <!-- Animated Circular Deck -->
+              <div id="deckPlaceholder" class="relative w-full h-full flex items-center justify-center transition-all">
+                
+                <!-- Fan Container: จุดศูนย์กลางของวงกลม (Absolute Center) -->
+                <div id="fanCardsContainer" class="fan-container"></div>
+                
+                <!-- ข้อความตรงกลางวงกลม -->
+                <div class="absolute z-30 text-center pointer-events-none flex flex-col items-center justify-center bg-night-bg/80 rounded-full w-24 h-24 sm:w-28 sm:h-28 backdrop-blur-md border border-night-cardBorder shadow-[0_0_20px_rgba(0,0,0,0.5)] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <span class="material-symbols-outlined text-night-orchid mb-0.5 text-xl" id="centerIcon">touch_app</span>
+                  <span class="text-night-peach text-[13px] font-display font-bold leading-tight" id="centerStatusText">เลือกไพ่<br>ใบที่ 1</span>
+                </div>
+                
+              </div>
+
+              <!-- Card Slots Container when drawn -->
+              <div id="drawnCardsGrid" class="hidden w-full flex flex-wrap items-center justify-center gap-4 py-2"></div>
+            </div>
+
+            <!-- ปุ่มกดย้ายมาด้านล่างและเว้นระยะห่าง -->
+            <div class="flex items-center justify-center gap-3 mt-4 sm:mt-6">
+              <button id="drawActionBtn" onclick="handleCardDrawClick()" class="clay-btn-orchid px-6 py-3 text-white text-sm font-semibold flex items-center gap-2">
+                <span class="material-symbols-outlined text-lg" id="drawBtnIcon">check_circle</span>
+                <span id="drawBtnText">ยืนยันเลือกไพ่ใบที่ 1</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Daily Limit Reached Lock State (Hidden by default) -->
+          <div id="deckLockedContainer" class="hidden my-6 p-6 rounded-3xl bg-night-bg/90 border border-night-cardBorder text-center space-y-4">
+            <div class="w-14 h-14 mx-auto rounded-full bg-night-orchid/20 text-night-peach flex items-center justify-center">
+              <span class="material-symbols-outlined text-3xl">auto_awesome</span>
+            </div>
+            <div>
+              <h3 class="font-display font-bold text-lg text-night-peach">ได้คำทำนายแล้วเหมียว!</h3>
+              <p class="text-xs text-night-textMuted mt-1">สมาชิกดูดวงได้ไม่จำกัดจำนวนครั้ง อยากลองอีกรอบก็เลือกหัวข้อแล้วสุ่มไพ่ใหม่ได้เลย</p>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-2">
+              <button onclick="startNewReading()" class="clay-btn-orchid px-6 py-2.5 text-xs font-bold text-white inline-flex items-center gap-1.5 active:scale-95">
+                <span class="material-symbols-outlined text-sm">replay</span>
+                <span>ดูดวงอีกครั้ง</span>
+              </button>
+              <button onclick="scrollToResultSection()" class="clay-btn-peach px-6 py-2.5 text-xs font-bold inline-flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">visibility</span>
+                <span>ดูผลทำนายอีกครั้ง</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: PREDICTION RESULTS -->
+    <section id="results-section" class="scroll-mt-20 hidden">
+      <div class="clay-card p-6 sm:p-8 bg-night-card">
+        
+        <div class="text-center max-w-lg mx-auto mb-6">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-night-bg text-night-peach text-xs font-semibold mb-2 border border-night-cardBorder">
+            <span class="material-symbols-outlined text-sm text-night-orchid">mark_email_read</span>
+            ผลคำทำนายประจำวัน
+          </div>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-night-peach mb-1" id="resultHeaderTitle">
+            ผลคำทำนายชะตาของคุณ
+          </h2>
+          <p class="text-xs text-night-textMuted" id="resultSubTitle">
+            วิเคราะห์ตามหน้าไพ่และหัวข้อที่คุณเลือก
+          </p>
+        </div>
+
+        <!-- Summary Badges -->
+        <div id="cardsSummaryList" class="grid grid-cols-1 md:grid-cols-3 gap-3.5 mb-6"></div>
+
+        <!-- Interpretation Details Box -->
+        <div class="clay-card p-5 bg-night-bg/80 border border-night-cardBorder mb-6 space-y-4">
+          <div>
+            <h3 class="font-display font-bold text-sm text-night-peach flex items-center gap-2 mb-1">
+              <span class="material-symbols-outlined text-night-orchid text-base">visibility</span>
+              สถานการณ์และพลังงานโดยรวม
+            </h3>
+            <p id="predictionDetail" class="text-xs sm:text-sm text-night-textLight leading-relaxed pl-6 font-light"></p>
+          </div>
+
+          <hr class="border-night-cardBorder/60">
+
+          <div>
+            <h3 class="font-display font-bold text-sm text-night-peach flex items-center gap-2 mb-1">
+              <span class="material-symbols-outlined text-amber-400 text-base">recommend</span>
+              คำแนะนำจากท่านเหมียว (Cat Advice)
+            </h3>
+            <p id="catAdviceDetail" class="text-xs sm:text-sm text-night-textLight leading-relaxed pl-6 font-light"></p>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-2">
+            <div class="p-2.5 rounded-xl bg-night-card/80 border border-night-cardBorder text-center">
+              <span class="text-[10px] text-night-textMuted block">เลขนำโชค</span>
+              <span class="font-display font-bold text-sm text-night-peach" id="luckyNumbers">7, 9</span>
+            </div>
+            <div class="p-2.5 rounded-xl bg-night-card/80 border border-night-cardBorder text-center">
+              <span class="text-[10px] text-night-textMuted block">สีมงคลเสริมดวง</span>
+              <span class="font-display font-bold text-xs sm:text-sm text-pink-300" id="luckyColor">ชมพูแซลมอน</span>
+            </div>
+            <div class="p-2.5 rounded-xl bg-night-card/80 border border-night-cardBorder text-center col-span-2 sm:col-span-1">
+              <span class="text-[10px] text-night-textMuted block">ทิศมงคลรับพลัง</span>
+              <span class="font-display font-bold text-xs sm:text-sm text-emerald-300" id="luckyDirection">ทิศตะวันออกเฉียงเหนือ</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shareable Image Container -->
+        <div class="clay-card p-5 bg-gradient-to-b from-night-card to-night-bg border border-night-cardBorder">
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
+            <div>
+              <h3 class="font-display font-bold text-base text-night-peach flex items-center gap-2">
+                <span class="material-symbols-outlined text-night-orchid">image</span>
+                การ์ดผลทำนายรูปภาพ (สำหรับแชร์)
+              </h3>
+              <p class="text-xs text-night-textMuted">ภาพความละเอียดสูง ดีไซน์ Claymorphism พาสเทลเข้ม</p>
+            </div>
+            
+            <div class="flex gap-2 w-full sm:w-auto">
+              <button onclick="downloadPredictionImage()" class="clay-btn-peach flex-1 sm:flex-none px-4 py-2 text-xs font-bold flex items-center justify-center gap-1.5 active:scale-95">
+                <span class="material-symbols-outlined text-sm">download</span>
+                <span>บันทึกรูปภาพ</span>
+              </button>
+              <button onclick="copyShareText()" class="px-3.5 py-2 rounded-2xl bg-night-card text-night-peach text-xs font-medium border border-night-cardBorder hover:border-night-orchid active:scale-95 transition flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-sm">share</span>
+                <span>คัดลอกข้อความ</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Canvas Rendered Preview -->
+          <div class="flex flex-col items-center">
+            <div class="w-full max-w-md rounded-2xl overflow-hidden shadow-2xl border-2 border-night-cardBorder bg-night-bg p-2">
+              <canvas id="predictionCanvas" class="w-full h-auto rounded-xl block"></canvas>
+            </div>
+            <span class="text-[11px] text-night-textMuted mt-2 flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">touch_app</span>
+              กดค้างที่รูปภาพ หรือกดปุ่ม 'บันทึกรูปภาพ' เพื่อส่งต่อให้เพื่อน ๆ
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LOGIN / REGISTER MODAL -->
+  <div id="loginModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm hidden" onclick="if(event.target===this)closeLoginModal()">
+    <div class="clay-card p-6 max-w-sm w-full bg-night-card border-2 border-night-orchid/50 text-center relative">
+
+      <button type="button" onclick="closeLoginModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-night-bg text-night-textMuted flex items-center justify-center hover:text-white" aria-label="ปิด">
+        <span class="material-symbols-outlined text-sm">close</span>
+      </button>
+
+      <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-night-orchid/20 text-night-peach flex items-center justify-center">
+        <span class="material-symbols-outlined text-3xl" id="authIcon">lock</span>
+      </div>
+
+      <h3 class="font-display font-bold text-xl text-night-peach mb-1" id="authTitle">เข้าสู่ระบบ Meow Tarot</h3>
+      <p class="text-xs text-night-textMuted mb-4" id="authSubtitle">เข้าสู่ระบบเพื่อดูดวงได้ไม่จำกัดจำนวนครั้ง</p>
+
+      <!-- Tabs -->
+      <div class="grid grid-cols-2 gap-1 p-1 mb-4 rounded-2xl bg-night-bg border border-night-cardBorder">
+        <button type="button" id="tabLogin" onclick="setAuthMode('login')" class="py-2 rounded-xl text-xs font-semibold transition">เข้าสู่ระบบ</button>
+        <button type="button" id="tabRegister" onclick="setAuthMode('register')" class="py-2 rounded-xl text-xs font-semibold transition">สมัครสมาชิก</button>
+      </div>
+
+      <form id="authForm" onsubmit="submitAuth(event)" class="space-y-3 text-left" novalidate>
+        <div>
+          <label for="authUsername" class="block text-[11px] text-night-textMuted mb-1">ชื่อผู้ใช้ (Username)</label>
+          <input type="text" id="authUsername" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="20" placeholder="เช่น catlover_99" class="clay-input w-full px-4 py-2.5 text-sm">
+          <p class="text-[10px] text-night-textMuted mt-1 hidden" id="usernameHint">3-20 ตัว ใช้ตัวอักษร ตัวเลข _ . - ได้</p>
+        </div>
+
+        <div>
+          <label for="authPassword" class="block text-[11px] text-night-textMuted mb-1">รหัสผ่าน (Password)</label>
+          <div class="relative">
+            <input type="password" id="authPassword" autocomplete="current-password" maxlength="72" placeholder="••••••••" class="clay-input w-full pl-4 pr-11 py-2.5 text-sm">
+            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full text-night-textMuted hover:text-night-peach flex items-center justify-center" aria-label="แสดง/ซ่อนรหัสผ่าน">
+              <span class="material-symbols-outlined text-lg" id="pwToggleIcon">visibility</span>
+            </button>
+          </div>
+          <p class="text-[10px] text-night-textMuted mt-1 hidden" id="passwordHint">อย่างน้อย 8 ตัวอักษร</p>
+        </div>
+
+        <div id="confirmWrap" class="hidden">
+          <label for="authConfirm" class="block text-[11px] text-night-textMuted mb-1">ยืนยันรหัสผ่านอีกครั้ง</label>
+          <input type="password" id="authConfirm" autocomplete="new-password" maxlength="72" placeholder="••••••••" class="clay-input w-full px-4 py-2.5 text-sm">
+        </div>
+
+        <p id="authError" role="alert" class="hidden text-xs text-rose-300 bg-rose-900/30 border border-rose-400/30 rounded-xl px-3 py-2"></p>
+
+        <button type="submit" id="authSubmitBtn" class="clay-btn-orchid w-full py-3 text-white font-semibold text-sm flex items-center justify-center gap-2 active:scale-95">
+          <span class="material-symbols-outlined text-base" id="authSubmitIcon">login</span>
+          <span id="authSubmitText">เข้าสู่ระบบ</span>
+        </button>
+      </form>
+
+      <p class="text-[10px] text-night-textMuted mt-4">
+        สมาชิกที่เข้าสู่ระบบดูดวงได้ไม่จำกัดจำนวนครั้ง
+      </p>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="clay-card px-5 py-3.5 bg-night-card text-night-peach flex items-center gap-3 shadow-2xl border border-night-orchid">
+      <span class="material-symbols-outlined text-night-peach" id="toastIcon">check_circle</span>
+      <span class="text-xs font-medium" id="toastMessage">การดำเนินการเสร็จสิ้น</span>
+    </div>
+  </div>
+
+  <footer class="mt-12 bg-night-bg/90 border-t border-night-cardBorder py-8 px-4 text-center">
+    <div class="max-w-4xl mx-auto space-y-3">
+      <div class="flex justify-center items-center gap-3 text-night-orchid">
+        <span class="material-symbols-outlined text-sm">pets</span>
+        <span class="w-8 h-0.5 bg-night-cardBorder rounded-full"></span>
+        <span class="material-symbols-outlined text-sm">pets</span>
+      </div>
+      <h4 class="font-display font-bold text-sm text-night-peach">MEOW TAROT • ทาสแมวพยากรณ์</h4>
+      <div class="inline-block px-3 py-1 rounded-xl bg-night-card border border-night-cardBorder text-[11px] text-night-textMuted">
+        ผลงานออกแบบ UX/UI: นักศึกษาวิทยาลัยการคอมพิวเตอร์ (College of Computing)
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main Logic & Interactions Script -->
+  <script>
+    // ===== Tarot Database (โหลดจาก tarot_database.json) =====
+    let TAROT_DB = [];          // ไพ่ 78 ใบ
+    let READING_GUIDES = {};    // วิธีอ่าน / ตำแหน่งไพ่แต่ละหัวข้อ
+
+    // ไพ่สำรอง กรณีโหลดไฟล์ JSON ไม่ได้
+    const FALLBACK_DB = [
+      { id: 0, name_en: "The Fool", name_th: "เดอะ ฟูล (ผู้เริ่มต้น)", arcana: "Major Arcana", element: "ลม",
+        core_meaning: "การเริ่มต้นใหม่ ความกล้าหาญ และอิสระ",
+        upright_meaning: "เริ่มต้นสิ่งใหม่ เปิดใจรับโอกาส กล้าเสี่ยง",
+        reversed_meaning: "หุนหันพลันแล่น ประมาท ขาดการวางแผน",
+        categories: { daily: "วันนี้เหมาะกับการลองสิ่งใหม่ๆ", love: "มีเกณฑ์พบความรักแบบไม่คาดฝัน", career: "โอกาสงานใหม่เข้ามา", finance: "กล้าลงทุนแต่อย่าเสี่ยงเกินตัว", monthly: "เดือนแห่งการเปิดบทใหม่" } },
+      { id: 19, name_en: "The Sun", name_th: "เดอะ ซัน (ดวงอาทิตย์)", arcana: "Major Arcana", element: "ไฟ",
+        core_meaning: "ความสุข ความสำเร็จ พลังบวก",
+        upright_meaning: "ประสบความสำเร็จ มีโชคดี มีความสุขสดใส",
+        reversed_meaning: "ความสุขล่าช้า มีอุปสรรคชั่วคราว",
+        categories: { daily: "วันนี้เป็นวันดีมาก ได้รับข่าวดี", love: "ความรักสดใส", career: "ความสำเร็จอย่างงดงาม", finance: "การเงินคล่องตัว", monthly: "เดือนแห่งชัยชนะ" } }
+    ];
+
+    async function loadTarotDatabase() {
+      try {
+        const res = await fetch('tarot_database.json', { cache: 'no-cache' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        TAROT_DB = data.cards;
+        READING_GUIDES = data.reading_guides || {};
+        console.log('Loaded tarot database:', TAROT_DB.length, 'cards');
+        return true;
+      } catch (err) {
+        console.warn('โหลด tarot_database.json ไม่สำเร็จ ใช้ไพ่สำรองแทน', err);
+        TAROT_DB = FALLBACK_DB;
+        READING_GUIDES = {};
+        showToast('โหลดฐานข้อมูลไพ่ไม่ได้ ต้องเปิดผ่านเว็บเซิร์ฟเวอร์ (ไม่ใช่ file://)');
+        return false;
+      }
+    }
+
+    // แปลงหัวข้อในหน้าเว็บ -> คีย์ใน database
+    const TOPIC_TO_CATEGORY = { daily: 'daily', love: 'love', work: 'career', wealth: 'finance', monthly: 'monthly', custom: 'daily' };
+    const TOPIC_TO_GUIDE = { daily: 'daily_reading', love: 'love_reading', work: 'career_reading', wealth: 'finance_reading', monthly: 'monthly_reading', custom: null };
+    const TOPIC_LABEL = { daily: 'เรื่องประจำวัน', love: 'เรื่องความรัก', work: 'เรื่องการงาน', wealth: 'เรื่องการเงิน', monthly: 'ภาพรวมประจำเดือน', custom: 'คำถามของคุณ' };
+    const DEFAULT_POSITIONS = ['ไพ่อดีต / พื้นฐาน', 'ไพ่ปัจจุบัน / ปัญหา', 'ไพ่อนาคต / ทางออก'];
+
+    const ELEMENT_LUCK = {
+      'ไฟ':  { color: 'แดงส้มสดใส',   direction: 'ทิศใต้' },
+      'น้ำ': { color: 'น้ำเงินครามลึก', direction: 'ทิศเหนือ' },
+      'ลม':  { color: 'ฟ้าขาวนวล',     direction: 'ทิศตะวันออก' },
+      'ดิน': { color: 'เขียวมรกต',     direction: 'ทิศตะวันตก' }
+    };
+
+    function shortNameTh(card) { return card.name_th.split(' (')[0]; }
+
+    function getPositionLabels(topicKey, count) {
+      if (count === 1) return ['ไพ่หลักประจำดวงชะตา'];
+      const guideKey = TOPIC_TO_GUIDE[topicKey];
+      const guide = guideKey && READING_GUIDES[guideKey];
+      if (guide && guide.spread_positions && guide.spread_positions.length >= count) {
+        return guide.spread_positions.slice(0, count).map(p => p.replace(/^ใบที่\s*\d+:\s*/, ''));
+      }
+      return DEFAULT_POSITIONS.slice(0, count);
+    }
+
+    function getCardReading(card, topicKey, reversed) {
+      const catKey = TOPIC_TO_CATEGORY[topicKey] || 'daily';
+      if (reversed) {
+        return `ไพ่กลับหัว: ${card.reversed_meaning}`;
+      }
+      let text = (card.categories && card.categories[catKey]) || card.upright_meaning;
+      text = text.replace(/\s*\(หากไพ่กลับหัว:[^)]*\)\s*$/, '')
+                 .replace(/^(มุมมองความรัก|มุมมองการเงิน|ภาพรวมประจำเดือน):\s*/, '');
+      return text;
+    }
+
+    // ข้อความทำนายของไพ่ใบที่ idx: ใช้ของ LLM ถ้ามี ไม่มีก็ใช้ข้อความจากฐานข้อมูลเดิม
+    function getCardText(idx) {
+      const card = drawnCards[idx];
+      if (currentNarrative && currentNarrative.cards && currentNarrative.cards[idx]) return currentNarrative.cards[idx];
+      return getCardReading(card, currentTopicKey, card.reversed);
+    }
+
+    function hydrateCards(saved) {
+      return (saved || []).map(s => {
+        const base = TAROT_DB.find(c => c.id === s.id);
+        return base ? { ...base, reversed: !!s.reversed } : null;
+      }).filter(Boolean);
+    }
+
+    // Global State
+    let currentUser = null; 
+    let currentTopicKey = 'daily';
+    let currentTopicTitle = 'ดูดวงประจำวัน';
+    let currentTopicDesc = 'ดวงชะตารายวัน 1 ใบ วันนี้ชีวิตจะปังหรือพัง';
+    let drawnCards = [];
+    let currentNarrative = null; // คำทำนายที่ LLM เรียบเรียง (null = ใช้ข้อความจากฐานข้อมูล)
+    let audioContext = null;
+    let isSoundMuted = false;
+
+    // Multi-step Card Selection State
+    let requiredCardCount = 1;
+    let selectedIndices = []; // เก็บ index ของไพ่ที่เลือกจากวงกลม
+    let currentPendingIndex = null; // ไพ่ที่กำลังชี้เลือกอยู่ล่าสุด
+
+    // Audio Synthesis
+    function initAudio() {
+      if (!audioContext) {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtx) audioContext = new AudioCtx();
+      }
+      if (audioContext && audioContext.state === 'suspended') audioContext.resume();
+    }
+
+    function playMeowSound() {
+      if (isSoundMuted) return;
+      initAudio();
+      if (!audioContext) return;
+      try {
+        const now = audioContext.currentTime;
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(450, now);
+        osc.frequency.exponentialRampToValueAtTime(780, now + 0.12);
+        osc.frequency.exponentialRampToValueAtTime(520, now + 0.38);
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.linearRampToValueAtTime(0.2, now + 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+        osc.start(now);
+        osc.stop(now + 0.45);
+      } catch (e) {}
+    }
+
+    function toggleAudio() {
+      isSoundMuted = !isSoundMuted;
+      document.getElementById('soundIcon').innerText = isSoundMuted ? 'volume_off' : 'volume_up';
+      showToast(isSoundMuted ? 'ปิดเสียงเรียบร้อย' : 'เปิดเสียงเรียบร้อย เหมียว!');
+    }
+
+    let authMode = 'login';
+    let authBusy = false;
+    let drawing = false;
+
+    async function api(path, body) {
+      try {
+        const opts = { credentials: 'same-origin' };
+        if (body !== undefined) {
+          opts.method = 'POST';
+          opts.headers = { 'Content-Type': 'application/json' };
+          opts.body = JSON.stringify(body);
+        }
+        const res = await fetch(path, opts);
+        let data = {};
+        try { data = await res.json(); } catch (e) {}
+        return { ok: res.ok, status: res.status, data };
+      } catch (e) {
+        return { ok: false, status: 0, data: { error: 'เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ กรุณาลองใหม่อีกครั้ง' } };
+      }
+    }
+
+    async function refreshSession() {
+      const r = await api('/api/me');
+      if (r.ok && r.data.user) {
+        currentUser = r.data.user;
+      } else {
+        currentUser = null;
+      }
+    }
+
+    function applyAuthState() {
+      const loginBtn = document.getElementById('headerLoginBtn');
+      const widget = document.getElementById('headerProfileWidget');
+      if (currentUser) {
+        loginBtn.classList.add('hidden');
+        widget.classList.remove('hidden');
+        document.getElementById('userName').innerText = currentUser.name;
+        document.getElementById('userAvatar').innerText = (Array.from(currentUser.name)[0] || '?').toUpperCase();
+      } else {
+        loginBtn.classList.remove('hidden');
+        widget.classList.add('hidden');
+      }
+    }
+
+    function openLoginModal(mode) {
+      playMeowSound();
+      setAuthMode(mode || authMode);
+      document.getElementById('loginModal').classList.remove('hidden');
+      setTimeout(() => document.getElementById('authUsername').focus(), 50);
+    }
+
+    function closeLoginModal() {
+      document.getElementById('loginModal').classList.add('hidden');
+      showAuthError('');
+    }
+
+    function setAuthMode(mode) {
+      authMode = mode;
+      const isReg = mode === 'register';
+      const on = 'bg-night-orchid text-white shadow-md';
+      const off = 'text-night-textMuted hover:text-night-peach';
+      document.getElementById('tabLogin').className = 'py-2 rounded-xl text-xs font-semibold transition ' + (isReg ? off : on);
+      document.getElementById('tabRegister').className = 'py-2 rounded-xl text-xs font-semibold transition ' + (isReg ? on : off);
+      document.getElementById('authTitle').innerText = isReg ? 'สมัครสมาชิก Meow Tarot' : 'เข้าสู่ระบบ Meow Tarot';
+      document.getElementById('authSubtitle').innerText = isReg
+        ? 'สร้างบัญชีใหม่ด้วย username และ password ของคุณเอง'
+        : 'เข้าสู่ระบบเพื่อดูดวงได้ไม่จำกัดจำนวนครั้ง';
+      document.getElementById('authIcon').innerText = isReg ? 'person_add' : 'lock';
+      document.getElementById('authSubmitIcon').innerText = isReg ? 'person_add' : 'login';
+      document.getElementById('authSubmitText').innerText = isReg ? 'สร้างบัญชี' : 'เข้าสู่ระบบ';
+      document.getElementById('confirmWrap').classList.toggle('hidden', !isReg);
+      document.getElementById('usernameHint').classList.toggle('hidden', !isReg);
+      document.getElementById('passwordHint').classList.toggle('hidden', !isReg);
+      document.getElementById('authPassword').setAttribute('autocomplete', isReg ? 'new-password' : 'current-password');
+      showAuthError('');
+    }
+
+    function showAuthError(msg) {
+      const el = document.getElementById('authError');
+      el.innerText = msg;
+      el.classList.toggle('hidden', !msg);
+    }
+
+    function togglePasswordVisibility() {
+      const inputs = [document.getElementById('authPassword'), document.getElementById('authConfirm')];
+      const show = inputs[0].type === 'password';
+      inputs.forEach(i => { i.type = show ? 'text' : 'password'; });
+      document.getElementById('pwToggleIcon').innerText = show ? 'visibility_off' : 'visibility';
+    }
+
+    async function submitAuth(e) {
+      e.preventDefault();
+      if (authBusy) return;
+      const username = document.getElementById('authUsername').value.trim();
+      const password = document.getElementById('authPassword').value;
+      const isReg = authMode === 'register';
+
+      if (!username || !password) { showAuthError('กรุณากรอกชื่อผู้ใช้และรหัสผ่าน'); return; }
+      if (isReg) {
+        if (!/^[\p{L}\p{N}_.-]{3,20}$/u.test(username)) { showAuthError('ชื่อผู้ใช้ต้องยาว 3-20 ตัว ใช้ได้เฉพาะตัวอักษร ตัวเลข _ . -'); return; }
+        if (password.length < 8) { showAuthError('รหัสผ่านต้องยาวอย่างน้อย 8 ตัวอักษร'); return; }
+        if (password !== document.getElementById('authConfirm').value) { showAuthError('รหัสผ่านทั้งสองช่องไม่ตรงกัน'); return; }
+      }
+
+      authBusy = true;
+      const btn = document.getElementById('authSubmitBtn');
+      btn.disabled = true; btn.classList.add('opacity-70');
+      showAuthError('');
+      const r = await api(isReg ? '/api/register' : '/api/login', { username, password });
+      authBusy = false;
+      btn.disabled = false; btn.classList.remove('opacity-70');
+
+      if (!r.ok) { showAuthError(r.data.error || 'เกิดข้อผิดพลาด กรุณาลองใหม่'); return; }
+
+      document.getElementById('authPassword').value = '';
+      document.getElementById('authConfirm').value = '';
+      await refreshSession();
+      applyAuthState();
+      closeLoginModal();
+      showToast(isReg ? `สมัครสมาชิกสำเร็จ ยินดีต้อนรับคุณ ${currentUser.name}!` : `ยินดีต้อนรับกลับมาคุณ ${currentUser.name}!`);
+      checkDailyLimitFlow();
+    }
+
+    async function handleLogout() {
+      await api('/api/logout', {});
+      currentUser = null;
+      applyAuthState();
+      showToast('ออกจากระบบเรียบร้อยแล้ว');
+      checkDailyLimitFlow();
+    }
+
+    // ฟังก์ชันสร้างไพ่ 78 ใบเรียงเป็นวงกลม
+    function renderFanCards() {
+      const container = document.getElementById('fanCardsContainer');
+      if (!container) return;
+      container.innerHTML = '';
+      
+      const totalCards = 78;
+      const radius = window.innerWidth < 640 ? 130 : 180;
+
+      for (let i = 0; i < totalCards; i++) {
+        const angle = (i / totalCards) * 360;
+        const card = document.createElement('div');
+        
+        card.id = `fan-card-${i}`;
+        card.className = 'fan-card bg-gradient-to-b from-night-cardBorder to-night-bg border border-night-orchid/50 shadow-md';
+        
+        // ถ้าใบนี้ถูกล็อกเลือกไว้ก่อนแล้ว ให้จางลง
+        if (selectedIndices.includes(i)) {
+          card.classList.add('fan-card-disabled');
+        }
+
+        card.style.transform = `rotate(${angle}deg) translateY(-${radius}px)`;
+        card.dataset.angle = angle; 
+        card.dataset.radius = radius; 
+        card.dataset.index = i;
+
+        // Event เมื่อคลิกเลือกไพ่
+        card.onclick = () => {
+          if (selectedIndices.includes(i) || selectedIndices.length >= requiredCardCount) return;
+
+          document.querySelectorAll('.fan-card').forEach(c => {
+            const idx = parseInt(c.dataset.index);
+            if (!selectedIndices.includes(idx)) {
+              c.classList.remove('fan-card-selected');
+              c.style.transform = `rotate(${c.dataset.angle}deg) translateY(-${c.dataset.radius}px)`;
+              c.style.zIndex = '1';
+            }
+          });
+
+          card.classList.add('fan-card-selected');
+          card.style.transform = `rotate(${angle}deg) translateY(-${radius + 30}px) scale(1.15)`;
+          card.style.zIndex = '50';
+          
+          currentPendingIndex = i;
+          playMeowSound();
+          updateSelectionUI();
+        };
+        
+        container.appendChild(card);
+      }
+      updateSelectionUI();
+    }
+
+    function updateSelectionUI() {
+      const step = selectedIndices.length + 1;
+      const tray = document.getElementById('selectedTray');
+      const centerStatus = document.getElementById('centerStatusText');
+      const drawBtnText = document.getElementById('drawBtnText');
+      const drawBtnIcon = document.getElementById('drawBtnIcon');
+
+      // วาด Tray สถานะการเลือก
+      tray.innerHTML = '';
+      for (let i = 0; i < requiredCardCount; i++) {
+        const isFilled = i < selectedIndices.length;
+        const isCurrent = i === selectedIndices.length && currentPendingIndex !== null;
+
+        const slot = document.createElement('div');
+        slot.className = `w-10 h-14 sm:w-12 sm:h-16 rounded-xl border-2 flex flex-col items-center justify-center transition-all ${
+          isFilled ? 'bg-night-orchid/30 border-night-peach text-night-peach shadow-lg scale-105' :
+          isCurrent ? 'bg-night-card border-night-orchid text-night-peach animate-pulse scale-105' :
+          'bg-night-bg/60 border-night-cardBorder/60 text-night-textMuted'
+        }`;
+
+        if (isFilled) {
+          slot.innerHTML = `<span class="material-symbols-outlined text-base">style</span><span class="text-[9px] font-bold">ใบที่ ${i+1}</span>`;
+        } else if (isCurrent) {
+          slot.innerHTML = `<span class="material-symbols-outlined text-base text-night-peach">touch_app</span><span class="text-[9px]">ใบที่ ${i+1}</span>`;
+        } else {
+          slot.innerHTML = `<span class="text-[10px] font-bold">${i+1}</span>`;
+        }
+        tray.appendChild(slot);
+      }
+
+      if (selectedIndices.length < requiredCardCount) {
+        centerStatus.innerHTML = `เลือกไพ่<br>ใบที่ ${step}`;
+        if (currentPendingIndex !== null) {
+          drawBtnText.innerText = `ยืนยันเลือกไพ่ใบที่ ${step}`;
+          drawBtnIcon.innerText = 'check_circle';
+        } else {
+          drawBtnText.innerText = `แตะไพ่บนวงกลมเพื่อเลือก (ใบที่ ${step})`;
+          drawBtnIcon.innerText = 'touch_app';
+        }
+      } else {
+        centerStatus.innerHTML = `เลือกครบแล้ว<br>พร้อมเปิดไพ่!`;
+        drawBtnText.innerText = `เปิดไพ่พยากรณ์ (${requiredCardCount} ใบ)`;
+        drawBtnIcon.innerText = 'auto_awesome';
+      }
+    }
+
+    // ----- รีเซ็ตเด็คให้พร้อมดูดวงใหม่ (สมาชิกดูดวงได้ไม่จำกัดครั้ง) -----
+    function checkDailyLimitFlow() {
+      const deckActive = document.getElementById('deckActiveContainer');
+      const deckLocked = document.getElementById('deckLockedContainer');
+
+      drawnCards = [];
+      selectedIndices = [];
+      currentPendingIndex = null;
+      
+      deckActive.classList.remove('hidden');
+      deckLocked.classList.add('hidden');
+      document.getElementById('results-section').classList.add('hidden');
+      const grid = document.getElementById('drawnCardsGrid');
+      grid.classList.add('hidden');
+      grid.innerHTML = '';
+      document.getElementById('deckPlaceholder').classList.remove('hidden');
+
+      renderFanCards();
+    }
+
+    // เริ่มดูดวงรอบใหม่ (ปุ่ม "ดูดวงอีกครั้ง")
+    function startNewReading() {
+      playMeowSound();
+      checkDailyLimitFlow();
+      document.getElementById('card-deck-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Card Draw Action Handler
+    function handleCardDrawClick() {
+      if (!currentUser) {
+        openLoginModal('login');
+        return;
+      }
+
+      // ถ้าเลือกยังไม่ครบขั้นตอน ยืนยันใบปัจจุบันก่อน
+      if (selectedIndices.length < requiredCardCount) {
+        if (currentPendingIndex === null) {
+          showToast(`กรุณาแตะคลิกเลือกไพ่ใบที่ ${selectedIndices.length + 1} จากวงกลมก่อนเหมียว!`);
+          return;
+        }
+        
+        // ยืนยันการเลือกไพ่ใบนี้
+        selectedIndices.push(currentPendingIndex);
+        playMeowSound();
+        showToast(`ยืนยันเลือกไพ่ใบที่ ${selectedIndices.length} เรียบร้อยแล้ว!`);
+        currentPendingIndex = null;
+        
+        // Render ปรับแต่งหน้าไพ่ในวงกลม
+        renderFanCards();
+        return;
+      }
+
+      // เมื่อเลือกครบตามจำนวนแล้ว ให้ดำเนินการเปิดไพ่
+      drawTarotCards();
+    }
+
+    function selectTopic(key, title, desc) {
+      currentTopicKey = key;
+      currentTopicTitle = title;
+      currentTopicDesc = desc;
+
+      requiredCardCount = (key === 'daily') ? 1 : 3;
+      selectedIndices = [];
+      currentPendingIndex = null;
+
+      playMeowSound();
+
+      document.querySelectorAll('.topic-btn').forEach(btn => {
+        btn.classList.remove('border-night-orchid');
+        const badge = btn.querySelector('.active-badge');
+        if (badge) badge.classList.add('hidden');
+      });
+
+      const currentBtn = event.currentTarget;
+      currentBtn.classList.add('border-night-orchid');
+      const badge = currentBtn.querySelector('.active-badge');
+      if (badge) badge.classList.remove('hidden');
+
+      const customArea = document.getElementById('customQuestionArea');
+      if (key === 'custom') {
+        customArea.classList.remove('hidden');
+      } else {
+        customArea.classList.add('hidden');
+      }
+
+      document.getElementById('currentTopicBadge').innerText = `หัวข้อปัจจุบัน: ${title} (${requiredCardCount} ใบ)`;
+      
+      renderFanCards();
+      document.getElementById('card-deck-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    async function drawTarotCards() {
+      if (drawing) return;
+      if (!TAROT_DB.length) { showToast('ยังโหลดฐานข้อมูลไพ่ไม่เสร็จ ลองใหม่อีกครั้งเหมียว'); return; }
+      drawing = true;
+      playMeowSound();
+
+      const customQ = document.getElementById('customQuestionInput').value.trim();
+      showToast('ท่านเหมียวกำลังตั้งสมาธิอ่านไพ่ให้ รอสักครู่นะ 🐾');
+      const r = await api('/api/draw', { topicKey: currentTopicKey, customQuestion: customQ });
+      drawing = false;
+
+      if (r.status === 401) {
+        currentUser = null;
+        applyAuthState(); checkDailyLimitFlow();
+        showToast('เซสชันหมดอายุ กรุณาเข้าสู่ระบบใหม่');
+        openLoginModal('login');
+        return;
+      }
+      if (!r.ok) { showToast(r.data.error || 'เกิดข้อผิดพลาด ลองใหม่อีกครั้ง'); return; }
+
+      const reading = r.data.reading;
+      drawnCards = hydrateCards(reading.cards);
+      currentNarrative = reading.narrative || null;
+      if (!currentNarrative) showToast('ตอนนี้ AI ยังไม่พร้อม ใช้คำทำนายสำรองจากฐานข้อมูลแทนนะเหมียว');
+      currentTopicKey = reading.topicKey;
+      currentTopicTitle = reading.topicTitle;
+      currentTopicDesc = reading.topicDesc;
+      const numCards = drawnCards.length;
+
+      const deckPlaceholder = document.getElementById('deckPlaceholder');
+      const drawnCardsGrid = document.getElementById('drawnCardsGrid');
+
+      deckPlaceholder.classList.add('hidden');
+      drawnCardsGrid.classList.remove('hidden');
+      drawnCardsGrid.innerHTML = '';
+
+      drawnCards.forEach((card, index) => {
+        const cardSlot = document.createElement('div');
+        cardSlot.className = 'relative w-36 sm:w-44 h-56 sm:h-64 perspective-1000 cursor-pointer';
+
+        cardSlot.innerHTML = `
+          <div class="card-flipper w-full h-full duration-700 transform-style-3d relative rounded-2xl shadow-xl transition-transform" id="cardFlip-${index}">
+            <div class="absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-br from-night-card via-night-bg to-night-cardBorder border-2 border-night-peach/60 flex flex-col items-center justify-between p-3 backface-hidden shadow-md">
+              <span class="material-symbols-outlined text-night-peach text-xs self-start">sparkles</span>
+              <div class="w-10 h-10 rounded-full border border-dashed border-night-orchid flex items-center justify-center bg-night-bg">
+                <span class="material-symbols-outlined text-xl text-night-peach">pets</span>
+              </div>
+              <span class="text-[9px] font-display text-night-peach font-semibold">แตะเพื่อเปิด</span>
+            </div>
+
+            <div class="absolute inset-0 w-full h-full rounded-2xl bg-night-card border-2 border-night-peach p-2.5 flex flex-col items-center justify-between backface-hidden rotate-y-180 shadow-md">
+              <div class="w-full flex justify-between items-center text-[10px] font-bold text-night-peach">
+                <span>N° ${card.id}</span>
+                <span>${card.reversed ? '↓ กลับหัว' : '↑ หงาย'}</span>
+              </div>
+              <div class="w-full h-32 my-auto px-4 flex justify-center items-center">
+                <img src="images/${card.id}.png" alt="${card.name_en}" class="max-w-full max-h-full rounded-md shadow-lg ${card.reversed ? 'rotate-180' : ''}" onerror="this.onerror=null;this.src='https://placehold.co/200x350/2E1A47/FAD1A7?text=${encodeURIComponent(card.name_en)}'">
+              </div>
+              <div class="text-center w-full">
+                <h4 class="font-display font-bold text-xs text-night-peach leading-tight">${shortNameTh(card)}</h4>
+                <p class="text-[9px] text-night-textMuted line-clamp-1">${card.name_en}</p>
+              </div>
+            </div>
+          </div>
+        `;
+
+        drawnCardsGrid.appendChild(cardSlot);
+
+        setTimeout(() => {
+          const flipper = document.getElementById(`cardFlip-${index}`);
+          if (flipper) flipper.classList.add('rotate-y-180');
+        }, 300 + (index * 300));
+      });
+
+      setTimeout(() => {
+        renderPredictionResults();
+        // แสดงแผง "ดูดวงอีกครั้ง" แทนการล็อกสิทธิ์
+        document.getElementById('deckActiveContainer').classList.add('hidden');
+        document.getElementById('deckLockedContainer').classList.remove('hidden');
+      }, 600 + (numCards * 350));
+    }
+
+    function renderPredictionResults() {
+      const resultsSection = document.getElementById('results-section');
+      resultsSection.classList.remove('hidden');
+
+      document.getElementById('resultHeaderTitle').innerText = `ผลคำทำนาย: ${currentTopicTitle}`;
+      document.getElementById('resultSubTitle').innerText = currentTopicDesc + (currentNarrative ? ' • เรียบเรียงโดย AI ✨' : '');
+
+      const labels = getPositionLabels(currentTopicKey, drawnCards.length);
+
+      // --- การ์ดสรุปแต่ละใบ ---
+      const summaryContainer = document.getElementById('cardsSummaryList');
+      summaryContainer.innerHTML = '';
+      drawnCards.forEach((card, idx) => {
+        const cardBox = document.createElement('div');
+        cardBox.className = 'clay-card p-3.5 bg-night-bg/90 border border-night-cardBorder flex items-start gap-3';
+        cardBox.innerHTML = `
+          <div class="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center font-bold text-night-card bg-night-peach shadow-sm text-xs">
+            <img src="images/${card.id}.png">
+          </div>
+          <div>
+            <span class="text-[9px] font-semibold uppercase tracking-wider text-night-orchid block">${labels[idx]}</span>
+            <h4 class="font-display font-bold text-xs sm:text-sm text-night-peach">${shortNameTh(card)} ${card.reversed ? '<span class="text-rose-300 text-[10px]">(กลับหัว)</span>' : ''}</h4>
+            <p class="text-[11px] text-night-textMuted font-light mt-0.5">${card.core_meaning}</p>
+          </div>
+        `;
+        summaryContainer.appendChild(cardBox);
+      });
+
+      // --- สถานการณ์และพลังงานโดยรวม ---
+      const detailEl = document.getElementById('predictionDetail');
+      detailEl.classList.add('whitespace-pre-line');
+      let detailText = drawnCards.map((card, idx) => {
+        const head = drawnCards.length === 1
+          ? `${card.name_en} (${card.reversed ? 'กลับหัว' : 'หงาย'})`
+          : `${labels[idx]} • ${card.name_en} (${card.reversed ? 'กลับหัว' : 'หงาย'})`;
+        return `${head}\n${getCardText(idx)}`;
+      }).join('\n\n');
+      if (currentNarrative) {
+        if (currentNarrative.opening) detailText = `${currentNarrative.opening}\n\n${detailText}`;
+        if (currentNarrative.overall) detailText += `\n\n✨ ภาพรวม\n${currentNarrative.overall}`;
+      }
+      detailEl.innerText = detailText;
+
+      // --- คำแนะนำจากท่านเหมียว ---
+      const lastCard = drawnCards[drawnCards.length - 1];
+      const adviceCore = lastCard.reversed
+        ? `ช่วงนี้ควรระวังเรื่อง "${lastCard.reversed_meaning}" ค่อยๆ ปรับตัวและอย่ารีบร้อนนะเหมียว`
+        : `ให้เดินตามพลังของไพ่ใบนี้: ${lastCard.upright_meaning}`;
+      const adviceTail = ['เหมียวขอให้โชคดี 🐾', 'อย่าลืมพักผ่อนและกินปลาทูให้อิ่มด้วยนะ', 'เชื่อมั่นในตัวเองแล้วลุยเลยเหมียว'];
+      document.getElementById('catAdviceDetail').innerText = (currentNarrative && currentNarrative.advice)
+        ? currentNarrative.advice
+        : `${adviceCore} ${adviceTail[(lastCard.id + (lastCard.reversed ? 1 : 0)) % adviceTail.length]}`;
+
+      // --- เลขนำโชค / สีมงคล / ทิศมงคล ---
+      const mainCard = drawnCards[0];
+      const luck = ELEMENT_LUCK[mainCard.element] || ELEMENT_LUCK['ไฟ'];
+      const nums = [...new Set(drawnCards.map(c => (c.id % 9) + 1))];
+      if (nums.length < 2) nums.push(((mainCard.id * 3) % 9) + 1);
+      document.getElementById('luckyNumbers').innerText = [...new Set(nums)].slice(0, 3).join(', ');
+      document.getElementById('luckyColor').innerText = luck.color;
+      document.getElementById('luckyDirection').innerText = luck.direction;
+
+      renderCanvasCardImage();
+    }
+
+    async function renderCanvasCardImage() {
+      const canvas = document.getElementById('predictionCanvas');
+      const ctx = canvas.getContext('2d');
+
+      const width = 800;
+      const height = 1000;
+      canvas.width = width;
+      canvas.height = height;
+
+      try { await document.fonts.ready; } catch (e) {}
+
+      // พื้นหลัง
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, height);
+      bgGrad.addColorStop(0, '#0A0E3B');
+      bgGrad.addColorStop(0.6, '#2E1A47');
+      bgGrad.addColorStop(1, '#121752');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.fillStyle = 'rgba(250, 209, 167, 0.25)';
+      for (let i = 0; i < 40; i++) {
+        const x = (i * 37) % width;
+        const y = (i * 53) % height;
+        ctx.beginPath();
+        ctx.arc(x, y, (i % 3) + 1, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // กรอบหลัก
+      ctx.fillStyle = '#2E1A47';
+      roundRect(ctx, 35, 35, width - 70, height - 70, 36, true, false);
+      ctx.strokeStyle = '#B862A2';
+      ctx.lineWidth = 3;
+      roundRect(ctx, 35, 35, width - 70, height - 70, 36, false, true);
+
+      // Header
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#FAD1A7';
+      ctx.font = 'bold 20px Mitr, sans-serif';
+      ctx.fillText('🐾 ทาสแมวพยากรณ์ • MEOW TAROT NIGHT', width / 2, 85);
+
+      ctx.fillStyle = '#F3E8FF';
+      ctx.font = 'bold 34px Fredoka, Mitr, sans-serif';
+      ctx.fillText(currentTopicTitle, width / 2, 135);
+
+      const loadCardImage = (src) => new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+        img.src = src;
+      });
+
+      // วาดไพ่
+      const cardCount = drawnCards.length;
+      const cardWidth = cardCount === 1 ? 260 : 200;
+      const cardHeight = cardCount === 1 ? 360 : 300;
+      const startY = 175;
+      const labels = getPositionLabels(currentTopicKey, cardCount);
+
+      for (let i = 0; i < cardCount; i++) {
+        const c = drawnCards[i];
+        const cardX = cardCount === 1
+          ? (width - cardWidth) / 2
+          : ((width - (cardCount * cardWidth + (cardCount - 1) * 20)) / 2) + i * (cardWidth + 20);
+
+        ctx.fillStyle = '#1F1033';
+        roundRect(ctx, cardX, startY, cardWidth, cardHeight, 22, true, false);
+        ctx.strokeStyle = '#FAD1A7';
+        ctx.lineWidth = 3;
+        roundRect(ctx, cardX, startY, cardWidth, cardHeight, 22, false, true);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#B862A2';
+        ctx.font = 'bold 13px Mitr, sans-serif';
+        ctx.fillText(labels[i], cardX + cardWidth / 2, startY + 24);
+
+        ctx.fillStyle = '#FAD1A7';
+        ctx.font = 'bold 14px Mitr, sans-serif';
+        ctx.fillText(`N° ${c.id}: ${c.name_en}`, cardX + cardWidth / 2, startY + 46);
+
+        const imgX = cardX + 20, imgY = startY + 58, imgW = cardWidth - 40, imgH = cardHeight - 120;
+        const imgElement = await loadCardImage(`images/${c.id}.png`);
+        if (imgElement) {
+          const scale = Math.min(imgW / imgElement.width, imgH / imgElement.height);
+          const dw = imgElement.width * scale, dh = imgElement.height * scale;
+          ctx.save();
+          ctx.translate(imgX + imgW / 2, imgY + imgH / 2);
+          if (c.reversed) ctx.rotate(Math.PI);
+          ctx.drawImage(imgElement, -dw / 2, -dh / 2, dw, dh);
+          ctx.restore();
+        } else {
+          ctx.fillStyle = '#B862A2';
+          ctx.beginPath();
+          ctx.arc(cardX + cardWidth / 2, imgY + imgH / 2, 34, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.fillStyle = '#FAD1A7';
+        ctx.font = 'bold 16px Fredoka, Mitr, sans-serif';
+        ctx.fillText(shortNameTh(c) + (c.reversed ? ' (กลับหัว)' : ''), cardX + cardWidth / 2, startY + cardHeight - 22, cardWidth - 16);
+      }
+
+      // กล่องสรุปด้านล่าง
+      const summaryY = startY + cardHeight + 25;
+      const boxH = height - 85 - summaryY;
+      ctx.fillStyle = '#0A0E3B';
+      roundRect(ctx, 60, summaryY, width - 120, boxH, 24, true, false);
+      ctx.strokeStyle = '#472B6B';
+      ctx.lineWidth = 2;
+      roundRect(ctx, 60, summaryY, width - 120, boxH, 24, false, true);
+
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#FAD1A7';
+      ctx.font = 'bold 18px Mitr, sans-serif';
+      ctx.fillText('✨ คำทำนายจากท่านเหมียว:', 85, summaryY + 38);
+
+      ctx.fillStyle = '#F3E8FF';
+      ctx.font = '15px Mitr, sans-serif';
+      let textY = summaryY + 70;
+      const lineH = 25;
+      const maxTextW = width - 170;
+      const footerLimit = summaryY + boxH - 18;
+
+      if (cardCount === 1) {
+        const c = drawnCards[0];
+        const t = `${shortNameTh(c)}: ${getCardText(0)}`;
+        textY = wrapText(ctx, t, 85, textY, maxTextW, lineH, 6) + lineH;
+      } else {
+        for (let i = 0; i < cardCount; i++) {
+          const c = drawnCards[i];
+          const t = `${i + 1}. ${shortNameTh(c)}${c.reversed ? ' (กลับหัว)' : ''}: ${getCardText(i)}`;
+          textY = wrapText(ctx, t, 85, textY, maxTextW, lineH, 3) + lineH + 4;
+        }
+      }
+
+      if (textY + lineH <= footerLimit) {
+        ctx.fillStyle = '#FAD1A7';
+        wrapText(ctx, '🐾 ' + document.getElementById('catAdviceDetail').innerText, 85, textY, maxTextW, lineH, Math.max(1, Math.floor((footerLimit - textY) / lineH) + 1));
+      }
+
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#B3A1C9';
+      ctx.font = '13px Mitr, sans-serif';
+      ctx.fillText('วิทยาลัยการคอมพิวเตอร์ • Meow Tarot ท่านเหมียวพยากรณ์', width / 2, height - 55);
+    }
+
+    function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+      if (fill) ctx.fill();
+      if (stroke) ctx.stroke();
+    }
+
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 99) {
+      let tokens;
+      if (typeof Intl !== 'undefined' && Intl.Segmenter) {
+        tokens = Array.from(new Intl.Segmenter('th', { granularity: 'word' }).segment(text), s => s.segment);
+      } else {
+        tokens = text.split('');
+      }
+      const lines = [];
+      let line = '';
+      for (const tk of tokens) {
+        const test = line + tk;
+        if (ctx.measureText(test).width > maxWidth && line) {
+          lines.push(line.trim());
+          line = tk.trimStart();
+        } else {
+          line = test;
+        }
+      }
+      if (line.trim()) lines.push(line.trim());
+
+      let shown = lines.slice(0, maxLines);
+      if (lines.length > maxLines) {
+        let last = shown[maxLines - 1];
+        while (last.length > 1 && ctx.measureText(last + '…').width > maxWidth) last = last.slice(0, -1);
+        shown[maxLines - 1] = last + '…';
+      }
+      let curY = y;
+      shown.forEach((l, i) => { ctx.fillText(l, x, curY); if (i < shown.length - 1) curY += lineHeight; });
+      return curY;
+    }
+
+    function downloadPredictionImage() {
+      playMeowSound();
+      const canvas = document.getElementById('predictionCanvas');
+      const imageURL = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.download = `meow-tarot-night-${Date.now()}.png`;
+      link.href = imageURL;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('บันทึกรูปภาพคำทำนายลงเครื่องเรียบร้อย!');
+    }
+
+    function copyShareText() {
+      playMeowSound();
+      const names = drawnCards.map(c => shortNameTh(c) + (c.reversed ? ' (กลับหัว)' : '')).join(', ');
+      const shareString = `🔮 ทาสแมวพยากรณ์: ${currentTopicTitle}\nไพ่ที่สุ่มได้: ${names}\nคำแนะนำ: ${document.getElementById('catAdviceDetail').innerText}\nมาเปิดไพ่เหมียวด้วยกันนะ! ✨`;
+      
+      const dummy = document.createElement("textarea");
+      document.body.appendChild(dummy);
+      dummy.value = shareString;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      showToast('คัดลอกข้อความคำทำนายแล้ว เหมียว!');
+    }
+
+    function scrollToResultSection() {
+      document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastMessage').innerText = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2600);
+    }
+
+    window.addEventListener('load', async () => {
+      await loadTarotDatabase();
+      await refreshSession();
+      applyAuthState();
+      checkDailyLimitFlow();
+    });
+  </script>
+</body>
+</html>
